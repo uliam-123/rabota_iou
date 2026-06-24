@@ -15,16 +15,15 @@
 body {
   height: 100vh;
   overflow: hidden;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family: system-ui, sans-serif;
   background: radial-gradient(ellipse at bottom, #0b1020 0%, #05070f 60%, #02030a 100%);
-  color: #e8e8e8;
+  color: #eaeaea;
 }
 
 /* ===== SKY ===== */
 .sky {
   position: absolute;
   inset: 0;
-  overflow: hidden;
 }
 
 /* stars */
@@ -34,22 +33,21 @@ body {
   height: 2px;
   background: white;
   border-radius: 50%;
-  opacity: 0.2;
-  animation: twinkle 6s infinite ease-in-out;
+  opacity: 0.15;
+  animation: twinkle 7s infinite ease-in-out;
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.1; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.3); }
+  0%,100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.4); }
 }
 
 /* mountains */
 .mountains {
   position: absolute;
-  bottom: 25%;
+  bottom: 28%;
   width: 100%;
   height: 40%;
-  background: linear-gradient(to top, #05070f, transparent);
 }
 
 .mountain {
@@ -57,15 +55,15 @@ body {
   bottom: 0;
   width: 0;
   height: 0;
-  border-left: 200px solid transparent;
-  border-right: 200px solid transparent;
+  border-left: 220px solid transparent;
+  border-right: 220px solid transparent;
   border-bottom: 140px solid #0a0f1f;
   opacity: 0.8;
 }
 
 .m1 { left: 10%; transform: scale(1.2); }
-.m2 { left: 35%; transform: scale(1.6); opacity: 0.6; }
-.m3 { left: 60%; transform: scale(1.1); opacity: 0.7; }
+.m2 { left: 40%; transform: scale(1.5); opacity: 0.6; }
+.m3 { left: 65%; transform: scale(1.1); opacity: 0.7; }
 
 /* lake */
 .lake {
@@ -74,7 +72,6 @@ body {
   width: 100%;
   height: 35%;
   background: linear-gradient(to top, #050913, #0a1430);
-  opacity: 0.9;
 }
 
 .reflection {
@@ -88,54 +85,69 @@ body {
   filter: blur(2px);
 }
 
-/* tree (partial, from right edge) */
+/* ===== TREE (FIGURE-8 STYLE) ===== */
 .tree {
   position: absolute;
-  right: -60px;
-  bottom: 20%;
-  width: 200px;
-  height: 300px;
+  right: -80px;
+  bottom: 18%;
+  width: 260px;
+  height: 360px;
 }
 
+/* trunk */
 .trunk {
   position: absolute;
-  right: 80px;
+  right: 110px;
   bottom: 0;
-  width: 30px;
+  width: 28px;
   height: 160px;
-  background: #2b1b12;
-  border-radius: 10px;
+  background: #2a1b12;
+  border-radius: 12px;
 }
 
-.leaves-cluster {
+/* crown - "8 shape" */
+.crown-top,
+.crown-bottom {
   position: absolute;
-  right: 0;
-  bottom: 120px;
-  width: 180px;
-  height: 180px;
+  right: 40px;
+  width: 140px;
+  height: 140px;
   background: radial-gradient(circle at 40% 40%, #1f6b3a, #0d3b22);
   border-radius: 50%;
-  opacity: 0.95;
 }
 
-/* ===== CENTER QUOTE ===== */
-.quote {
+/* top bigger */
+.crown-top {
+  bottom: 150px;
+  transform: scale(1.15);
+}
+
+/* bottom smaller */
+.crown-bottom {
+  bottom: 70px;
+  transform: scale(0.95);
+}
+
+/* subtle overlap blend */
+.crown-top,
+.crown-bottom {
+  box-shadow: 0 0 30px rgba(0,0,0,0.2);
+}
+
+/* ===== CENTER TEXT (for future poems) ===== */
+.center {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 80%;
+  transform: translate(-50%,-50%);
   text-align: center;
-  font-size: 1.6rem;
-  line-height: 1.4;
-  padding: 20px;
-  backdrop-filter: blur(4px);
+  max-width: 70%;
 }
 
 /* ===== LEAVES ===== */
 .leaf {
   position: absolute;
-  width: 18px;
+  width: 16px;
   height: 10px;
   background: linear-gradient(to right, #2f8f4e, #1f5f36);
   border-radius: 50%;
@@ -152,7 +164,7 @@ body {
   }
 }
 
-/* ===== BOTTOM UI ===== */
+/* ===== UI ===== */
 .ui {
   position: absolute;
   bottom: 20px;
@@ -160,16 +172,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .search {
   width: 80%;
-  max-width: 500px;
+  max-width: 520px;
   padding: 10px 14px;
   border-radius: 20px;
   border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.35);
   color: white;
   outline: none;
 }
@@ -192,16 +204,13 @@ button {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
-  .quote {
-    font-size: 1.1rem;
-  }
-
   .tree {
-    transform: scale(0.8);
+    transform: scale(0.75);
+    right: -120px;
   }
 
   .search {
-    width: 90%;
+    width: 92%;
   }
 }
 </style>
@@ -215,84 +224,55 @@ button {
     <div class="mountain m2"></div>
     <div class="mountain m3"></div>
   </div>
+
   <div class="lake">
     <div class="reflection"></div>
   </div>
 </div>
 
+<!-- TREE -->
 <div class="tree">
   <div class="trunk"></div>
-  <div class="leaves-cluster"></div>
+  <div class="crown-top"></div>
+  <div class="crown-bottom"></div>
 </div>
 
-<div class="quote" id="quote">
-  ...
-</div>
-
+<!-- UI -->
 <div class="ui">
   <input class="search" placeholder="Поиск стихов..." id="search"/>
+
   <div class="buttons">
-    <button onclick="action('Пейзажная')">Пейзажная</button>
-    <button onclick="action('Философская')">Философская</button>
-    <button onclick="action('О любви')">О любви</button>
-    <button onclick="action('Гражданская')">Гражданская</button>
+    <button onclick="action('Природа')">Природа</button>
+    <button onclick="action('Идея')">Идея</button>
+    <button onclick="action('Мысль')">Мысль</button>
+    <button onclick="action('Неопределенная')">Неопределенная</button>
   </div>
 </div>
 
 <script>
 /* ===== STARS ===== */
 const sky = document.getElementById('sky');
-for (let i = 0; i < 80; i++) {
+
+for (let i = 0; i < 90; i++) {
   const s = document.createElement('div');
   s.className = 'star';
   s.style.left = Math.random() * 100 + '%';
   s.style.top = Math.random() * 60 + '%';
-  s.style.animationDelay = Math.random() * 6 + 's';
+  s.style.animationDelay = Math.random() * 7 + 's';
   sky.appendChild(s);
 }
 
-/* ===== QUOTES ===== */
-const quotes = [
-  "— заглушка 1",
-  "— заглушка 2",
-  "— заглушка 3",
-  "— заглушка 4"
-];
-
-function getQuoteIndex() {
-  const interval = 10 * 60 * 1000;
-  return Math.floor(Date.now() / interval) % quotes.length;
-}
-
-function updateQuote() {
-  document.getElementById('quote').textContent = quotes[getQuoteIndex()];
-}
-
-updateQuote();
-setInterval(updateQuote, 60 * 1000);
-
-/* ===== LEAVES SYSTEM ===== */
-const startKey = "site_start_time";
-let startTime = localStorage.getItem(startKey);
-
-if (!startTime) {
-  startTime = Date.now();
-  localStorage.setItem(startKey, startTime);
-}
-
-startTime = Number(startTime);
-
-let leafInterval = null;
-
-function spawnLeaf(intensity = 1) {
+/* ===== LEAVES (INFINITE FLOW) ===== */
+function spawnLeaf() {
   const leaf = document.createElement('div');
   leaf.className = 'leaf';
 
   const y = Math.random() * window.innerHeight * 0.5;
+
   leaf.style.top = (window.innerHeight * 0.2 + y) + 'px';
   leaf.style.right = '-20px';
 
-  const duration = (6 + Math.random() * 4) / intensity;
+  const duration = 5 + Math.random() * 4;
   leaf.style.animationDuration = duration + 's';
 
   document.body.appendChild(leaf);
@@ -300,47 +280,23 @@ function spawnLeaf(intensity = 1) {
   setTimeout(() => leaf.remove(), duration * 1000);
 }
 
-function getLeafState() {
-  const now = Date.now();
-  const elapsed = now - startTime;
-
-  const normalPhase = 20 * 60 * 1000;
-  const fadePhase = 3 * 60 * 1000;
-
-  if (elapsed < normalPhase) {
-    return { rate: 1, intensity: 1 };
-  }
-
-  if (elapsed < normalPhase + fadePhase) {
-    const t = (elapsed - normalPhase) / fadePhase;
-    return { rate: 1 - t, intensity: 1 - t };
-  }
-
-  return { rate: 0, intensity: 0 };
-}
-
 function startLeaves() {
-  leafInterval = setInterval(() => {
-    const state = getLeafState();
-
-    if (state.rate <= 0) return;
-
-    if (Math.random() < state.rate) {
-      spawnLeaf(0.5 + state.intensity);
+  setInterval(() => {
+    if (Math.random() < 0.7) {
+      spawnLeaf();
     }
-  }, 600);
+  }, 350);
 }
 
 startLeaves();
 
-/* ===== ACTIONS ===== */
+/* ===== UI ===== */
 function action(name) {
   alert("Категория: " + name);
 }
 
-/* search */
-document.getElementById('search').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
+document.getElementById("search").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
     alert("Поиск: " + e.target.value);
   }
 });
