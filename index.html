@@ -237,15 +237,19 @@ button {
   <div class="crown-bottom"></div>
 </div>
 
+<div id="poem-fragment" class="center"></div>
+
+<div id="category-content" class="center" style="display:none; opacity:0;"></div>
+  
 <!-- UI -->
 <div class="ui">
   <input class="search" placeholder="Поиск стихов..." id="search"/>
 
   <div class="buttons">
-    <button onclick="action('Природа')">Природа</button>
-    <button onclick="action('Идея')">Идея</button>
-    <button onclick="action('Мысль')">Мысль</button>
-    <button onclick="action('Неопределенная')">Неопределенная</button>
+    <button onclick="openCategory('landscape')">Природа</button>
+    <button onclick="openCategory('idea')">Идея</button>
+    <button onclick="openCategory('thought')">Мысль</button>
+    <button onclick="openCategory('undefined')">Неопределенная</button>
   </div>
 </div>
 
@@ -301,6 +305,8 @@ document.getElementById("search").addEventListener("keydown", (e) => {
   }
 });
 </script>
-
+  
+<script src="script.js"></script>
+  
 </body>
 </html>
